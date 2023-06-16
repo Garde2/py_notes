@@ -47,5 +47,5 @@ form.dateEdit.dateChanged.connect(on_dateedit_change)
 
 
 #form.label.setText("Отслеживание заметок")
-
+on_click_calendar()
 app.exec()

@@ -51,6 +51,11 @@ class Window(QMainWindow):
         self.knopka.adjustSize()
         self.knopka.clicked.connect(self.knopka_gotovo)
 
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.proverka)
+        self.timer.start(5000)
+        
+
     def knopka_gotovo(self):
         data_txt = str(self.data.text())
         time_txt = str(self.time.text())
@@ -125,6 +130,7 @@ class Window(QMainWindow):
         for i in lines:
             File_R.write(i + '\n')
         File_R.close() 
+
         
-               
+
 

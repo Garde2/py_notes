@@ -15,10 +15,10 @@ def whatToDo():
     exit = True
     while exit == True:
         print("Введите команду: add - добавить заметку, " +
-                "search - поиск заметки," +
-                "edit - редактировать заметку," +
-                "showall - показать все заметки," +
-                "exit - выйти из приложения.")
+                "search - поиск заметки, " +
+                "edit - редактировать заметку, " +
+                "showall - показать все заметки, " +
+                "exit - выйти из приложения. ")
         cmd = input("Выберите команду из списка: ")
 
         if cmd == "add":
@@ -33,8 +33,8 @@ def whatToDo():
         if cmd == "edit":
             edit = input("Найдем заметку: ").lower()
             printNote(searchNote(edit))
-            srch = searchNote(edit)
-            print(ifFound(srch))
+            result = searchNote(edit)
+            print(ifFound(result))
             continue
 
         if cmd == "showall":
@@ -52,7 +52,7 @@ def whatToDo():
 def newNote(noteName, key):
     with open(fileName, "a") as file:
         id = idNoteCheck() + 1
-        file.write("id = " + str(id) + "; " + "Создана: " + str(date_now) + " _ " + noteName.lower() + " _ " + key.lower() + '/n')
+        file.write("id = " + str(id) + "; " + "Создана: " + str(date_now) + " _ " + noteName.lower() + " _ " + key.lower() + "; ")
         idWriting(id)
         return "Заметка добавлена!"
 
@@ -66,7 +66,7 @@ def newNoteText():
 
 
 def idNoteCheck():
-    with open (fileID, "r") as file:
+    with open(fileID, "r") as file:
         temp = ''.join(file.readlines())
         id = int(temp)
 
@@ -77,21 +77,21 @@ def idWriting(id):
         file.write(str(id))
 
 def ifFound(dictionary):
-    if dictionary.ger("er") == None:
+    if dictionary.get("er") == None:
         changeNote(dictionary)
         return changeNote(dictionary)
 
 def searchNote(search):
     with open(fileName, "r") as file:
-        dictionary = { }
+        dictionary = {}
         content = file.readlines()
-        for i in range(len(content)):
-            if search in content[i]:
-                number = str(i)
-                dictionary[number] = content[i]
+        for num in range(len(content)):
+            if search in content[num]:
+                id = str(num)
+                dictionary[id] = content[num]
 
         if len(dictionary) < 1:
-            dictionary2 = { }
+            dictionary2 = {}
             dictionary2["er"] = "Не найдено!"
             return dictionary2
 

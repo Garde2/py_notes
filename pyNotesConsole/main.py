@@ -1,3 +1,3 @@
-import controller as c
+import controller as controller
 
-c.run()
+controller.run()

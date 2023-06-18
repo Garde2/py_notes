@@ -17,9 +17,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>30</x>
       <y>10</y>
-      <width>361</width>
+      <width>731</width>
       <height>51</height>
      </rect>
     </property>
@@ -86,9 +86,9 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>260</y>
-      <width>151</width>
+      <x>10</x>
+      <y>320</y>
+      <width>261</width>
       <height>41</height>
      </rect>
     </property>
@@ -98,7 +98,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Найти событие</string>
+     <string>Записать и отследить</string>
     </property>
    </widget>
    <widget class="QDateEdit" name="dateEdit">
@@ -132,8 +132,8 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>320</y>
+      <x>320</x>
+      <y>330</y>
       <width>441</width>
       <height>31</height>
      </rect>
@@ -144,7 +144,7 @@
      </font>
     </property>
     <property name="text">
-     <string>До наступления события осталось: XX дней</string>
+     <string>До наступления события осталось дней: XX</string>
     </property>
    </widget>
   </widget>

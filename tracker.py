@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -17,7 +18,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(230, 10, 361, 51))
+        self.label.setGeometry(QtCore.QRect(30, 10, 731, 51))
         font = QtGui.QFont()
         font.setPointSize(28)
         self.label.setFont(font)
@@ -39,7 +40,7 @@ class Ui_MainWindow(object):
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(290, 260, 151, 41))
+        self.pushButton.setGeometry(QtCore.QRect(10, 320, 261, 41))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.pushButton.setFont(font)
@@ -54,7 +55,7 @@ class Ui_MainWindow(object):
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(290, 320, 441, 31))
+        self.label_4.setGeometry(QtCore.QRect(320, 330, 441, 31))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.label_4.setFont(font)
@@ -76,9 +77,9 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Notes_Python"))
         self.label.setText(_translate("MainWindow", "Заметки с трекером"))
         self.label_2.setText(_translate("MainWindow", "Заметка"))
-        self.pushButton.setText(_translate("MainWindow", "Найти событие"))
+        self.pushButton.setText(_translate("MainWindow", "Записать и отследить"))
         self.label_3.setText(_translate("MainWindow", "Задать дату: "))
-        self.label_4.setText(_translate("MainWindow", "До наступления события осталось: XX дней"))
+        self.label_4.setText(_translate("MainWindow", "До наступления события осталось дней: XX"))
 
 
 if __name__ == "__main__":

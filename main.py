@@ -1,104 +1,148 @@
-#from tracker import *
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
-#import sys
-#app = QtWidgets.QApplication(sys.argv)
-#MainWindow = QtWidgets.QMainWindow()
-#ui = Ui_MainWindow()
-#ui.setupUi(MainWindow)
-#MainWindow.show()
+import datetime
 
-#ui.label.setText("Заметки")
+print(" Заметки - консольное приложение")
 
-#sys.exit(app.exec_())
+fileName = "pyNotesConsole.json"
+fileID = "idNotes.txt"
 
-import pickle
-from PyQt5 import uic
-from PyQt5.QtCore import QDate
-from PyQt5.QtWidgets import QApplication
+date_now = datetime.datetime.now()
+print(date_now)
 
-Form, Window = uic.loadUiType("tracker.ui")
+def whatToDo():
+    exit = True
+    while exit == True:
+        print("Введите команду: add - добавить заметку, " +
+                "search - поиск заметки, " +
+                "edit - редактировать заметку, " +
+                "showall - показать все заметки, " +
+                "exit - выйти из приложения. ")
+        cmd = input("Выберите команду из списка: ")
 
-app = QApplication([])
-window = Window()
-form = Form()
-form.setupUi(window)
-window.show()
+        if cmd == "add":
+            print(newNote(newNoteName(), newNoteText()))
+            continue
 
-def save_to_file():
-    global start_date, calc_date, description
-    data_to_save = {"start": start_date, "end": calc_date, "desc": description}
-    file1 = open("dateTime.txt", "wb")
-    pickle.dump(data_to_save, file1)
-    file1.close()
+        if cmd == "search":
+            search = input("Ищем заметку: ").lower()
+            printNote(searchNote(search))
+            continue
 
-def read_from_file():
-    global start_date, calc_date, description
-    try:
-        file1 = open("dateTime.txt", "rb")
-        data_to_load = pickle.load(file1)
-        file1.close()
-        start_date = data_to_load["start"]
-        calc_date = data_to_load["end"]
-        description = data_to_load["desc"]
-        print(start_date.toString('dd-MM-yyyy'), calc_date.toString('dd-MM-yyyy'), description)
-        form.calendarWidget.setSelectedDate(calc_date)
-        form.dateEdit.setDate(calc_date)
-        form.plainTextEdit.setPlainTexr(description)
+        if cmd == "edit":
+            edit = input("Найдем заметку: ").lower()
+            printNote(searchNote(edit))
+            result = searchNote(edit)
+            print(ifFound(result))
+            continue
 
-    except:
-        print("Не могу прочесть файл, может, его нет? запишите что-нибудь!")
+        if cmd == "showall":
+            printAllNotes()
+            continue
 
+        if cmd == "exit":
+            print("Приложение завершило свою работу")
+            break
 
-
-def on_click():
-    global calc_date, description
-    calc_date = form.calendarWidget.selectedDate()
-    description = form.plainTextEdit.toPlainText()
-
-    #print(form.plainTextEdit.toPlainText())
-    #print(form.dateEdit.dateTime().toString('dd-MM-yyyy'))
-    #print("В процессе...!")
-
-    save_to_file()
-    #print(form.calendarWidget.selectedDate().toString('dd-MM-yyyy'))
-    #date = QDate(2023, 6, 17)
-    #form.calendarWidget.setSelectedDate(date)
-
-def on_click_calendar():
-    global start_date, calc_date
-    #print(form.calendarWidget.selectedDate().toString('dd-MM-yyyy'))
-    form.dateEdit.setDate(form.calendarWidget.selectedDate())
-    calc_date = form.calendarWidget.selectedDate()
-    delta_days = start_date.daysTo(calc_date)
-    print(delta_days)
-    form.label_4.setText("До наступления события осталось: %s дней" % delta_days)
-
-def on_dateedit_change():
-    global start_date, calc_date
-    #print(form.dateEdit.dateTime().toString('dd-MM-yyyy'))
-    form.calendarWidget.setSelectedDate(form.dateEdit.date())
-    calc_date = form.dateEdit.date()
-    delta_days = start_date.daysTo(calc_date)
-    print(delta_days)
-    form.label_4.setText("До наступления события осталось дней: %s " % delta_days)
+        else:
+            print("Ошибка!Что-то введено не верно!")
 
 
+def newNote(noteName, key):
+    with open(fileName, "a") as file:
+        id = idNoteCheck() + 1
+        file.write("id = " + str(id) + "; " + "Создана: " + str(date_now) + " _ " + noteName.lower() + " _ " + key.lower() + "; ")
+        idWriting(id)
+        return "Заметка добавлена!"
 
-form.pushButton.clicked.connect(on_click)
-form.calendarWidget.clicked.connect(on_click_calendar)
-form.dateEdit.dateChanged.connect(on_dateedit_change)
+def newNoteName():
+    noteName = str(input("Введите название заметки: "))
+    return noteName
 
-start_date = form.calendarWidget.selectedDate()
-calc_date = form.calendarWidget.selectedDate()
-description = form.plainTextEdit.toPlainText()
-read_from_file()
-
-
-form.label.setText("Заметки: %s " % start_date.toString('dd-MM-yyyy'))
-
-
-on_click_calendar()
-
+def newNoteText():
+    noteText = str(input("Введите описание события: "))
+    return noteText
 
 
-app.exec_()
+def idNoteCheck():
+    with open(fileID, "r") as file:
+        temp = ''.join(file.readlines())
+        id = int(temp)
+
+        return id
+
+def idWriting(id):
+    with open(fileID, "w") as file:
+        file.write(str(id))
+
+def ifFound(dictionary):
+    if dictionary.get("er") == None:
+        changeNote(dictionary)
+        return changeNote(dictionary)
+
+def searchNote(search):
+    with open(fileName, "r") as file:
+        dictionary = {}
+        content = file.readlines()
+        for num in range(len(content)):
+            if search in content[num]:
+                id = str(num)
+                dictionary[id] = content[num]
+
+        if len(dictionary) < 1:
+            dictionary2 = {}
+            dictionary2["er"] = "Не найдено!"
+            return dictionary2
+
+        else:
+            return dictionary
+
+
+def changeNote(dictionary2):
+    exit == True
+    while exit == True:
+        selection = input("Какую строку редактируем (номер)? Или введите exit: ")
+
+        if selection == "exit" and len(selection) == 2:
+            return "Закончили!"
+
+        if selection in dictionary2:
+
+            print("Перезапишите заметку полностью!: ")
+            newData = "_" + newNoteName() + "; " + newNoteText()
+
+            with open(fileName, "r") as file:
+                oldData = file.read()
+                data = dictionary2[selection]
+                if len(newData) == 0:
+                    new_data = oldData.replace(data, newData + '\n')
+                    new_data = new_data.lower()
+                else:
+                    id = idNoteCheck() + 1
+                    new_data = oldData.replace(data, "id = " + str(id) + "; " + "Создано: " +
+                                                str(date_now) + "; " + newData + '\n')
+                    new_data = new_data.lower()
+                    idWriting(id)
+
+            with open(fileName, "w") as file:
+                file.writelines(new_data)
+                print("Готово!")
+            continue
+
+
+        elif selection not in dictionary2 and selection != "exit":
+            print("Введите заново!")
+        continue
+
+def printNote(dictionary):
+    for key, value in dictionary.items():
+        print(f"Строка: {key}  Заметка: {value} ")
+
+def printAllNotes():
+    book = open("pyNotesConsole.json", "r")
+    print(book.read())
+    book.close()
+
+whatToDo()
+

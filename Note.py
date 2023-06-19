@@ -1,9 +1,12 @@
 from datetime import datetime
 import uuid
+import tracker
+import controller
 
 
 class Note:
-    def __init__(self, id = str(uuid.uuid1())[0:3],  title = "текст", body = "текст", date = str(datetime.now().strftime("%d.%m.%Y %H:%M:%S"))):
+
+    def __init__(self, id,  title, body, date = str(datetime.now().strftime("%d.%m.%Y %H:%M:%S"))):
         self.id = id
         self.title = title
         self.body = body

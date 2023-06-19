@@ -16,6 +16,8 @@ import pickle
 from PyQt5 import uic
 from PyQt5.QtCore import QDate
 from PyQt5.QtWidgets import QApplication
+from datetime import datetime
+import uuid
 
 Form, Window = uic.loadUiType("tracker.ui")
 
@@ -25,26 +27,9 @@ form = Form()
 form.setupUi(window)
 window.show()
 
-def run():
-    if tracker.self.pushButton_6.clicked.connect(on_click):
-        f.show("all")
-    if tracker.self.pushButton.clicked.connect(on_click):
-        f.add()
-    if tracker.self.pushButton_5.clicked.connect(on_click):
-        f.show("all")
-        f.id_edit_del_show("del")
-    if tracker.self.pushButton_4.clicked.connect(on_click):
-        f.show("all")
-        f.id_edit_del_show('edit')
-    if tracker.self.pushButton_7.clicked.connect(on_click):
-        f.show('date')
-    if tracker.self.pushButton_8.clicked.connect(on_click):
-        f.show("id")
-        f.id_edit_del_show("show")
-    if tracker.self.pushButton_9.clicked.connect(on_click):
-        tracker.goodbuy()
-    else:
-        print("=)")
+title = form.plainTextEdit_2.toPlainText("Введите содержание заметки")
+id = str(uuid.uuid1())[0:3]
+body = form.plainTextEdit.toPlainText("Введите содержание заметки")
 
 def save_to_file():
     global start_date, calc_date, description
@@ -87,7 +72,23 @@ def on_click(number):
     calc_date = form.calendarWidget.selectedDate()
     #description = form.plainTextEdit.toPlainText()
 
-    run()
+    if tracker.self.pushButton_6.clicked.connect(on_click):
+        f.show("all")
+    if tracker.self.pushButton.clicked.connect(on_click):
+        f.add()
+    if tracker.self.pushButton_5.clicked.connect(on_click):
+        f.show("all")
+        f.id_edit_del_show("del")
+    if tracker.self.pushButton_4.clicked.connect(on_click):
+        f.show("all")
+        f.id_edit_del_show('edit')
+    if tracker.self.pushButton_7.clicked.connect(on_click):
+        f.show('date')
+    if tracker.self.pushButton_8.clicked.connect(on_click):
+        f.show("id")
+        f.id_edit_del_show("show")
+    if tracker.self.pushButton_9.clicked.connect(on_click):
+        tracker.goodbuy()
 
     #print(form.plainTextEdit.toPlainText())
     #print(form.dateEdit.dateTime().toString('dd-MM-yyyy'))

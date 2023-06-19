@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import Note
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -31,10 +31,10 @@ class Ui_MainWindow(object):
         self.progressBar.setProperty("value", 24)
         self.progressBar.setObjectName("progressBar")
         self.plainTextEdit = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit.setGeometry(QtCore.QRect(20, 150, 271, 201))
+        self.plainTextEdit.setGeometry(QtCore.QRect(20, 240, 271, 161))
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(110, 110, 101, 31))
+        self.label_2.setGeometry(QtCore.QRect(110, 200, 101, 31))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.label_2.setFont(font)
@@ -108,6 +108,15 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.pushButton_9.setFont(font)
         self.pushButton_9.setObjectName("pushButton_9")
+        self.plainTextEdit_2 = QtWidgets.QPlainTextEdit(self.centralwidget)
+        self.plainTextEdit_2.setGeometry(QtCore.QRect(20, 150, 271, 41))
+        self.plainTextEdit_2.setObjectName("plainTextEdit_2")
+        self.label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5.setGeometry(QtCore.QRect(70, 110, 201, 31))
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        self.label_5.setFont(font)
+        self.label_5.setObjectName("label_5")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 791, 21))
@@ -136,7 +145,23 @@ class Ui_MainWindow(object):
         self.pushButton_7.setText(_translate("MainWindow", "По дате"))
         self.pushButton_8.setText(_translate("MainWindow", "По ID"))
         self.pushButton_9.setText(_translate("MainWindow", "Выход"))
+        self.label_5.setText(_translate("MainWindow", "Название заметки"))
 
+def create_note():
+
+    title = self.plainTextEdit_2.setPlainText("")
+    body = self.plainTextEdit.setPlainText("")
+    return Note.Note(title=title, body=body)
+
+# def check_len_text_input(text, n):
+#     while len(text) <= n:
+#         print(f'Текст должен быть больше {n} символов\n')
+#         text = input('Введите тескт: ')
+#     else:
+#         return text
+
+def goodbuy():
+    print("=)")
 
 if __name__ == "__main__":
     import sys

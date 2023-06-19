@@ -10,6 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import Note
+import controller
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -147,11 +149,10 @@ class Ui_MainWindow(object):
         self.pushButton_9.setText(_translate("MainWindow", "Выход"))
         self.label_5.setText(_translate("MainWindow", "Название заметки"))
 
-def create_note():
 
-    title = self.plainTextEdit_2.setPlainText("")
-    body = self.plainTextEdit.setPlainText("")
-    return Note.Note(title=title, body=body)
+def create_note(id, title, body, date):
+    return Note.Note(id=id, title=title, body=body, date=date)
+
 
 # def check_len_text_input(text, n):
 #     while len(text) <= n:
@@ -163,8 +164,10 @@ def create_note():
 def goodbuy():
     print("=)")
 
+
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

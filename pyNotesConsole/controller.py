@@ -4,24 +4,24 @@ import ui
 
 def run():
     input_from_user = ""
-    while input_from_user != "7":
+    while input_from_user != "quit":
         ui.menu()
         input_from_user = input().strip()
-        if input_from_user == "1":
+        if input_from_user == "all":
             f.show("all")
-        if input_from_user == "2":
+        if input_from_user == "add":
             f.add()
-        if input_from_user == "3":
+        if input_from_user == "delete":
             f.show("all")
-            f.id_edit_del_show("del")
-        if input_from_user == "4":
+            f.id_edit_del_show("delete")
+        if input_from_user == "edit":
             f.show("all")
-            f.id_edit_del_show('edit')
-        if input_from_user == "5":
-            f.show('date')
-        if input_from_user == "6":
+            f.id_edit_del_show("edit")
+        if input_from_user == "date":
+            f.show("date")
+        if input_from_user == "id":
             f.show("id")
             f.id_edit_del_show("show")
-        if input_from_user == "7":
+        if input_from_user == "quit":
             ui.goodbuy()
             break

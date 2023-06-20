@@ -47,7 +47,7 @@ def id_edit_del_show(text):
                 Note.Note.set_body(notes, note.get_body())
                 Note.Note.set_date(notes)
                 print("Изменено!")
-            if text == "del":
+            if text == "delete":
                 array.remove(notes)
                 print("Удалено!")
             if text == "show":
